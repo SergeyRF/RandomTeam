@@ -1,0 +1,94 @@
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".activity.fragment.PlayerFragment">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cvPlayerHolder"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/player_holder_height"
+        android:layout_marginLeft="@dimen/small_margin"
+        android:layout_marginRight="@dimen/small_margin"
+        android:layout_marginTop="@dimen/small_margin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civPlayerAvatar"
+                android:layout_width="@dimen/player_avatar"
+                android:layout_height="@dimen/player_avatar"
+                android:layout_marginBottom="@dimen/in_card_horizontal_margin"
+                android:layout_marginTop="@dimen/in_card_horizontal_margin"
+                android:layout_marginLeft="@dimen/in_card_horizontal_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/etName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/in_card_horizontal_margin"
+                android:layout_marginRight="@dimen/medium_margin"
+                android:hint="@string/name"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textSize="@dimen/text_medium"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/civPlayerAvatar"
+                app:layout_constraintRight_toLeftOf="@id/imageButton"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:background="@color/Transparent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/ic_person_add_black_24dp" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvPlayers"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/small_margin"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/bt_GoToTeam"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvPlayerHolder" />
+
+    <Button
+        android:id="@+id/bt_GoToTeam"
+        style="@style/btNextStyle"
+        android:text="@string/next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btAddRandomPlayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/medium_margin"
+        android:src="@drawable/dice"
+        app:layout_constraintBottom_toTopOf="@id/bt_GoToTeam"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
