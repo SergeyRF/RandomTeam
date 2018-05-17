@@ -22,6 +22,7 @@ object DbCreator {
     fun createPlayers(dataBase: DataBase, context: Context) {
         val players = dataBase.playersDao().getAllPlayers()
         if (players.isEmpty()) {
+            Timber.d("no players add")
             val somePlayersJson = Functions.readJsonFromAssets(context, "players.json")
             val gson = GsonBuilder().create()
             val somePlayersList: List<SomePlayer> = gson.fromJson(somePlayersJson,
@@ -34,6 +35,8 @@ object DbCreator {
                                 avatar = somePlayer.avatar,
                                 type = PlayerType.STANDARD))
             }
+        } else {
+            Timber.d("Players already exists")
         }
     }
 

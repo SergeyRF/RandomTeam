@@ -70,9 +70,11 @@ class PlayerFragment : Fragment() {
 
 
         bt_GoToTeam.setOnClickListener {
+            Timber.d("button next clicked")
             viewModel.startTeam()
         }
         btAddRandomPlayer.setOnClickListener {
+            Timber.d("button clicked")
             viewModel.addRandomPlayer()
         }
 

@@ -25,6 +25,8 @@ import timber.log.Timber
             Timber.plant(TimberReleaseTree())
         }*/
 
+        Timber.plant(Timber.DebugTree())
+
         val namesArray = resources.getStringArray(R.array.teams)
         Logika.teamNames = namesArray.toMutableList()
 
