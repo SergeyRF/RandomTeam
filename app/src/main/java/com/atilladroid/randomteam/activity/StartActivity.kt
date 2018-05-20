@@ -14,5 +14,8 @@ class StartActivity : AppCompatActivity() {
         bt_start.setOnClickListener {
             startActivity(Intent(this, PlayerTeamActivity::class.java))
         }
+        bt_rules.setOnClickListener {
+            startActivity(Intent(this,DiceActivity::class.java))
+        }
     }
 }
