@@ -35,4 +35,11 @@
 
     <!-- Toasts and messages -->
     <string name="press_more_to_finish_game">Нажмите еще раз чтобы выйти</string>
+
+    <!-- Rate -->
+    <string name="rate">Оценить</string>
+    <string name="rate_massage">Оцените приложение, если понравилось </string>
+    <string name="rate_never">Никогда</string>
+    <string name="rate_last">Позже</string>
+    <string name="rate_ok">Оценить</string>
 </resources>

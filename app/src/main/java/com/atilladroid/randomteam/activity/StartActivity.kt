@@ -3,6 +3,7 @@ package com.atilladroid.randomteam.activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.atilladroid.randomteam.AppRater
 import com.atilladroid.randomteam.R
 import kotlinx.android.synthetic.main.activity_start.*
 
@@ -17,5 +18,11 @@ class StartActivity : AppCompatActivity() {
         bt_rules.setOnClickListener {
             startActivity(Intent(this,DiceActivity::class.java))
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val r = AppRater()
+        r.app_launched(this)
     }
 }

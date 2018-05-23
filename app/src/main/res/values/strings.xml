@@ -31,7 +31,12 @@
     <!-- Toasts -->
     <string name="press_more_to_finish_game">Press again to finish a game</string>
 
-
+    <!-- Rate -->
+    <string name="rate">Rate us</string>
+    <string name="rate_massage">Rate this game if you like it</string>
+    <string name="rate_never">Never</string>
+    <string name="rate_last">Later</string>
+    <string name="rate_ok">Rate</string>
 
 
 </resources>
