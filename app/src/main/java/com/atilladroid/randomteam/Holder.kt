@@ -10,6 +10,7 @@ import android.widget.TextView
 import com.atilladroid.randomteam.beans.Player
 import com.atilladroid.randomteam.beans.Team
 import com.atilladroid.randomteam.utils.Functions
+import com.atilladroid.randomteam.utils.gone
 import com.atilladroid.randomteam.utils.hide
 import com.atilladroid.randomteam.utils.show
 import com.squareup.picasso.Picasso
@@ -124,4 +125,35 @@ class PlayerInTeamHolder(view: View) : BaseHolder(view) {
                 .load(Functions.imageNameToUrl("player_avatars/small/${player.avatar}"))
                 .into(avatarImage)
     }
+}
+
+class TeamHolderWithoutRename(val view: View) : BaseHolder(view) {
+    val teamName: TextView = view.findViewById(R.id.tvTeamName)
+    val playersList: LinearLayout = view.findViewById(R.id.llPlayers)
+    val ivRename = view.findViewById<ImageButton>(R.id.ibTeemRename)
+
+    fun bind(team: Team) {
+        teamName.text = team.name
+
+        playersList.removeAllViews()
+        for (player in team.players) {
+            Timber.d("add player into listview")
+            val playerView = LayoutInflater.from(view.context)
+                    .inflate(R.layout.holder_player_inteam, playersList, false)
+
+            val holder = PlayerInTeamHolder(playerView)
+            holder.bind(player)
+
+            playersList.addView(playerView)
+        }
+
+        ivRename.gone()
+
+
+        teamName.setOnLongClickListener {
+            listener?.invoke(team)
+            true
+        }
+    }
+
 }

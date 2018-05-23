@@ -14,7 +14,7 @@
     <string name="two_team_min">2 teams is a minimum</string>
     <string name="cant_create_teams">Minimum two player per team</string>
 
-
+    <string name="not_enough_players">Add more players</string>
     <string name="name_not_unic">Player already exists</string>
     <string name="player_name_empty">Player name shoud not be empty</string>
 
@@ -30,6 +30,8 @@
 
     <!-- Toasts -->
     <string name="press_more_to_finish_game">Press again to finish a game</string>
+
+
 
 
 </resources>

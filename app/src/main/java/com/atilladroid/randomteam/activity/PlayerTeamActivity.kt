@@ -3,12 +3,14 @@ package com.atilladroid.randomteam.activity
 import android.app.FragmentTransaction
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.atilladroid.randomteam.PlayerTeamViewModel
 import com.atilladroid.randomteam.R
+import com.atilladroid.randomteam.activity.fragment.HintTeamFragment
 import com.atilladroid.randomteam.activity.fragment.PlayerFragment
 import com.atilladroid.randomteam.activity.fragment.RoundFragment
 import com.atilladroid.randomteam.activity.fragment.TeamFragment
@@ -36,6 +38,8 @@ class PlayerTeamActivity : AppCompatActivity() {
             PlayerTeamViewModel.FragmentStart.START_PLAYER -> startPlayersFragment()
             PlayerTeamViewModel.FragmentStart.START_TEAM -> startTeamsFragment()
             PlayerTeamViewModel.FragmentStart.START_ROUND -> startRoundFragment()
+            PlayerTeamViewModel.FragmentStart.START_HINT -> startHintTeam()
+            PlayerTeamViewModel.FragmentStart.START_DICE -> startDice()
         }
     }
 
@@ -63,6 +67,19 @@ class PlayerTeamActivity : AppCompatActivity() {
                 .addToBackStack(null)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit()
+    }
+
+    private fun startHintTeam() {
+        val fragment = HintTeamFragment()
+        supportFragmentManager.beginTransaction()
+                .replace(android.R.id.content, fragment)
+                .addToBackStack(null)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit()
+    }
+
+    private fun startDice() {
+        startActivity(Intent(this, DiceActivity::class.java))
     }
 
     override fun onBackPressed() {

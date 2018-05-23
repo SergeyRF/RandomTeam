@@ -15,6 +15,7 @@ import android.widget.Toast
 import com.atilladroid.randomteam.PlayerTeamViewModel
 import com.atilladroid.randomteam.R
 import com.atilladroid.randomteam.RvAdapter
+import com.atilladroid.randomteam.activity.dialog.AvatarSelectDialog
 import com.atilladroid.randomteam.beans.Player
 import com.atilladroid.randomteam.utils.Functions
 import com.squareup.picasso.Picasso
@@ -79,8 +80,11 @@ class PlayerFragment : Fragment() {
 
 
         bt_GoToTeam.setOnClickListener {
-            Timber.d("button next clicked")
-            viewModel.startTeam()
+            if (viewModel.noNeedPlayer()) {
+                viewModel.startTeam()
+            } else {
+                Toast.makeText(context, R.string.not_enough_players, Toast.LENGTH_LONG).show()
+            }
         }
         btAddRandomPlayer.setOnClickListener {
             Timber.d("button clicked")
@@ -99,6 +103,17 @@ class PlayerFragment : Fragment() {
             avatar?.let { showAvatar(it) }
         })
 
+        civPlayerAvatar.setOnClickListener {
+            val dialog = AvatarSelectDialog(context!!, viewModel.listOfAvatars)
+            dialog.onSelect = dialogOnSelect
+            dialog.show()
+        }
+
+    }
+
+    val dialogOnSelect: (String) -> Unit = { fileName ->
+        Timber.d("avatar select $fileName")
+        showAvatar(fileName)
     }
 
     override fun onStart() {

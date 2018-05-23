@@ -19,12 +19,14 @@ class RvAdapter : RecyclerView.Adapter<BaseHolder>() {
     var listenerTwo: ((Any) -> Unit)? = null
     var listenerThree: ((Any) -> Unit)? = null
 
+    var teamRename = true
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
 
         val holder = when (viewType) {
             VIEW_TYPE_PLAYER -> PlayerHolder(view)
-            VIEW_TYPE_TEAM -> TeamHolder(view)
+            VIEW_TYPE_TEAM -> if (teamRename) TeamHolder(view) else TeamHolderWithoutRename(view)
             else -> throw RuntimeException("Unsupported item type")
         }
 
@@ -44,6 +46,7 @@ class RvAdapter : RecyclerView.Adapter<BaseHolder>() {
         when (holder) {
             is PlayerHolder -> holder.bind(item as Player)
             is TeamHolder -> holder.bind(item as Team)
+            is TeamHolderWithoutRename -> holder.bind(item as Team)
         }
     }
 

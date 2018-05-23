@@ -4,9 +4,8 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import com.atilladroid.randomteam.PlayerTeamViewModel
 import com.atilladroid.randomteam.R
 import com.atilladroid.randomteam.RoundViewModel
 import com.atilladroid.randomteam.beans.Player
@@ -27,10 +26,12 @@ import kotlinx.android.synthetic.main.fragment_round.*
 class RoundFragment : Fragment() {
 
     lateinit var viewModel: RoundViewModel
+    lateinit var viewModelTeam: PlayerTeamViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         viewModel = ViewModelProviders.of(activity!!).get(RoundViewModel::class.java)
+        viewModelTeam = ViewModelProviders.of(activity!!).get(PlayerTeamViewModel::class.java)
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_round, container, false)
     }
@@ -47,6 +48,13 @@ class RoundFragment : Fragment() {
         bt_next_player.setOnClickListener {
             viewModel.nextTeam()
         }
+        tv_TurnTeamName.setOnClickListener {
+            viewModelTeam.startHint()
+        }
+
+        civDice.setOnClickListener {
+            viewModelTeam.startDice()
+        }
 
     }
 
@@ -61,5 +69,17 @@ class RoundFragment : Fragment() {
                 .into(civPlayerAvatar)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater!!.inflate(R.menu.menu_hint, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item?.itemId == R.id.item_show_hint) {
+            viewModelTeam.startHint()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 }// Required empty public constructor

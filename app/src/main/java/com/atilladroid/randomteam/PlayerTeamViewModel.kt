@@ -96,12 +96,20 @@ class PlayerTeamViewModel(application: Application) : AndroidViewModel(applicati
         avatarLiveData.postValue(listOfAvatars.random())
     }
 
-    fun startTeam(){
+    fun startTeam() {
         StartFragmentLD.value = FragmentStart.START_TEAM
     }
 
-    fun startRound(){
+    fun startRound() {
         StartFragmentLD.value = FragmentStart.START_ROUND
+    }
+
+    fun startHint() {
+        StartFragmentLD.value = FragmentStart.START_HINT
+    }
+
+    fun startDice() {
+        StartFragmentLD.value = FragmentStart.START_DICE
     }
 
     fun initTeams() {
@@ -134,9 +142,13 @@ class PlayerTeamViewModel(application: Application) : AndroidViewModel(applicati
         updateData()
     }
 
-    fun newGame(){
+    fun newGame() {
         Logika.newGame()
         updateData()
+    }
+
+    fun noNeedPlayer(): Boolean {
+        return Logika.getPlayers().size >= 2
     }
 
 
@@ -145,9 +157,11 @@ class PlayerTeamViewModel(application: Application) : AndroidViewModel(applicati
         teamsLiveData.value = Logika.getTeams()
     }
 
-    enum class FragmentStart{
+    enum class FragmentStart {
         START_PLAYER,
         START_TEAM,
-        START_ROUND
+        START_ROUND,
+        START_HINT,
+        START_DICE
     }
 }
