@@ -26,7 +26,7 @@
         app:layout_constraintVertical_bias="0.5"
         app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintWidth_percent=".7"
-        android:text="@string/start"
+        android:text="@string/team"
         />
 
     <Button
@@ -39,7 +39,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintWidth_percent=".7"
         style="@style/Button_welcome"
-        android:text="@string/rules"
+        android:text="@string/dices"
         />
 
 

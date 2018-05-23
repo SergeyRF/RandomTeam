@@ -1,14 +1,15 @@
 package com.atilladroid.randomteam.activity.fragment
 
 
-import android.arch.lifecycle.ViewModelProviders
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
+import android.support.v7.preference.PreferenceManager
 import android.support.v7.widget.LinearLayoutManager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.view.animation.DecelerateInterpolator
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import com.atilladroid.randomteam.PlayerTeamViewModel
@@ -17,6 +18,8 @@ import com.atilladroid.randomteam.RvAdapter
 import com.atilladroid.randomteam.beans.Player
 import com.atilladroid.randomteam.utils.Functions
 import com.squareup.picasso.Picasso
+import com.takusemba.spotlight.SimpleTarget
+import com.takusemba.spotlight.Spotlight
 import kotlinx.android.synthetic.main.fragment_player.*
 import timber.log.Timber
 
@@ -30,12 +33,18 @@ class PlayerFragment : Fragment() {
     lateinit var viewModel: PlayerTeamViewModel
     private var avatar: String? = null
 
+    companion object {
+        const val SHOW_SPOTLIGHT = "spotlight_show"
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
+        // Inflate the layout for this fragment
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
+
         viewModel = ViewModelProviders.of(activity!!).get(PlayerTeamViewModel::class.java)
 
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_player, container, false)
     }
 
@@ -92,6 +101,60 @@ class PlayerFragment : Fragment() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        globalListentrForSpotl()
+    }
+
+    private fun globalListentrForSpotl() {
+        val preference = PreferenceManager.getDefaultSharedPreferences(context)
+        val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
+        if (preference.getBoolean(SHOW_SPOTLIGHT, true)) {
+
+            view!!.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+                override fun onGlobalLayout() {
+                    Timber.d("On global changed")
+                    view!!.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                    spotl()
+                    editor.putBoolean(SHOW_SPOTLIGHT, false).apply()
+                }
+            })
+        }
+    }
+
+    fun spotl() {
+
+        val custom = SimpleTarget.Builder(activity!!)
+                .setPoint(btAddRandomPlayer)
+                .setRadius(80f)
+                .setTitle(getString(R.string.hint_random_player))
+                .setDescription(getString(R.string.hint_inject_random_player))
+                /* .setOnSpotlightStartedListener(object : OnTargetStateChangedListener<SimpleTarget> {
+
+                     override fun onStarted(target: SimpleTarget?) {
+                     }
+
+                     override fun onEnded(target: SimpleTarget?) {
+                     }
+                 })*/
+                .build()
+        val injectName = SimpleTarget.Builder(activity!!)
+                .setRadius(80f)
+                .setPoint(imageButton)
+                .setTitle(getString(R.string.hint_inject_name))
+                .setDescription(getString(R.string.hint_inject_name_button))
+                .build()
+
+        Spotlight.with(activity!!)
+                .setOverlayColor(ContextCompat.getColor(activity!!, R.color.anotherBlack))
+                .setDuration(300L)
+                .setTargets(injectName, custom)
+                .setClosedOnTouchedOutside(true)
+                .setAnimation(DecelerateInterpolator(2f))
+                .start()
+
+    }
+
 
     private fun onPlayersChanged(players: List<Player>?) {
         adapter.setData(players)
@@ -99,6 +162,7 @@ class PlayerFragment : Fragment() {
         rvPlayers.scrollToPosition(position - 1)
         Timber.d("Add random player $position")
     }
+
     private fun addPlayer() {
         if (etName.text.isNotEmpty()) {
             val newPlayer = Player(etName.text.toString().trim())

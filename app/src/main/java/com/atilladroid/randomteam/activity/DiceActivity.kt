@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
 import com.atilladroid.randomteam.R
 import kotlinx.android.synthetic.main.activity_dice.*
-import timber.log.Timber
 
 class DiceActivity : AppCompatActivity() {
 
@@ -92,7 +91,7 @@ class DiceActivity : AppCompatActivity() {
     }
 
     fun generateRandom(dice: Int): Int {
-       Handler().postDelayed({ }, dice.toLong()/10)
+        Handler().postDelayed({ }, dice.toLong() / 10)
         return (Math.random() * dice).toInt() + 1
     }
 

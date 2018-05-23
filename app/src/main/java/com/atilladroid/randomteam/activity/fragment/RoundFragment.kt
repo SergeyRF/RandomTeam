@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.atilladroid.randomteam.PlayerTeamViewModel
 import com.atilladroid.randomteam.R
 import com.atilladroid.randomteam.RoundViewModel
 import com.atilladroid.randomteam.beans.Player
@@ -27,7 +26,7 @@ import kotlinx.android.synthetic.main.fragment_round.*
  */
 class RoundFragment : Fragment() {
 
-    lateinit var viewModel:RoundViewModel
+    lateinit var viewModel: RoundViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -38,10 +37,11 @@ class RoundFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
         viewModel.currentTeam.observe(this, Observer { team ->
             setTeam(team as Team)
         })
-        viewModel.currentPlayer.observe(this, Observer { player->
+        viewModel.currentPlayer.observe(this, Observer { player ->
             setPlayer(player as Player)
         })
         bt_next_player.setOnClickListener {
@@ -50,13 +50,16 @@ class RoundFragment : Fragment() {
 
     }
 
-    fun setTeam(team:Team){
+    fun setTeam(team: Team) {
         tv_TurnTeamName.text = team.name
     }
-    fun setPlayer(player:Player){
-        tvTurnPlayerName.text =player.name
+
+    fun setPlayer(player: Player) {
+        tvTurnPlayerName.text = player.name
         Picasso.get()
                 .load(Functions.imageNameToUrl("player_avatars/large/${player.avatar}"))
                 .into(civPlayerAvatar)
     }
+
+
 }// Required empty public constructor

@@ -7,7 +7,7 @@ import java.util.*
 /**
  * Created by sergey on 5/11/18.
  */
-object Logika{
+object Logika {
 
     private val players = mutableMapOf<Long, Player>()
     private val teams = mutableListOf<Team>()
@@ -16,16 +16,16 @@ object Logika{
 
     fun maxTeamsCount(): Int = players.size / 2
 
-    fun addPlayer(player: Player):Boolean {
-       return if (players.containsKey(player.id)){
-             false
-        }else{
+    fun addPlayer(player: Player): Boolean {
+        return if (players.containsKey(player.id)) {
+            false
+        } else {
             players[player.id] = player
             true
         }
     }
 
-    fun removePlayer(player: Player){
+    fun removePlayer(player: Player) {
         players.remove(player.id)
     }
 
@@ -62,5 +62,10 @@ object Logika{
         }
     }
 
-   fun getTeams():List<Team> = teams
+    fun getTeams(): List<Team> = teams
+
+    fun newGame() {
+        players.clear()
+        teams.clear()
+    }
 }

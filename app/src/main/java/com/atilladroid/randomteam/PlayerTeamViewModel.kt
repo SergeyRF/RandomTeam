@@ -134,6 +134,11 @@ class PlayerTeamViewModel(application: Application) : AndroidViewModel(applicati
         updateData()
     }
 
+    fun newGame(){
+        Logika.newGame()
+        updateData()
+    }
+
 
     private fun updateData() {
         playersLiveData.value = Logika.getPlayers()
