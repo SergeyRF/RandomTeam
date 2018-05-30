@@ -18,6 +18,11 @@
     <string name="name_not_unic">Player already exists</string>
     <string name="player_name_empty">Player name shoud not be empty</string>
 
+    <!--renameTeam-->
+    <string name="team_rename">Team name</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+
     <!-- hint-->
     <string name="hint_inject_name">Write player name</string>
     <string name="hint_inject_name_button">Click a button to add her to the game. You need at least 4 players for the game</string>

@@ -37,6 +37,7 @@ class RoundViewModel(application: Application) : AndroidViewModel(application) {
     fun updateData() {
         currentPlayer.value = teams[currentTeamPosition].getPlayer()
         currentTeam.value = teams[currentTeamPosition]
+
     }
 
 

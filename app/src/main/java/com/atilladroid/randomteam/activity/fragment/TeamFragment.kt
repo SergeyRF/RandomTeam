@@ -1,6 +1,7 @@
 package com.atilladroid.randomteam.activity.fragment
 
 
+import android.app.Dialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -12,6 +13,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.view.animation.DecelerateInterpolator
+import android.view.inputmethod.EditorInfo
+import android.widget.Button
+import android.widget.EditText
 import com.atilladroid.randomteam.PlayerTeamViewModel
 import com.atilladroid.randomteam.PrecaheLayoutManager
 import com.atilladroid.randomteam.R
@@ -58,9 +62,9 @@ class TeamFragment : Fragment() {
 
         rvTeams.adapter = adapterTeam
 
-        /* adapterTeam.listener = { team: Any ->
+         adapterTeam.listener = { team: Any ->
              dialog(team as Team)
-         }*/
+         }
 
         fabAddTeam.setOnClickListener {
             viewModel.addTeam()
@@ -129,6 +133,39 @@ class TeamFragment : Fragment() {
                 }
             })
         }
+    }
+
+    private fun dialog(team: Team) {
+        val dialog = Dialog(context)
+
+        dialog.setContentView(R.layout.dialog_team_name)
+        val etTeemD = dialog.findViewById<EditText>(R.id.etDialog)
+        val btYesD = dialog.findViewById<Button>(R.id.btYesDialog)
+        val btNoD = dialog.findViewById<Button>(R.id.btNoDialog)
+        etTeemD.hint = team.name
+
+        btYesD.setOnClickListener {
+            if (etTeemD.text.isNotEmpty()) {
+                team.name = etTeemD.text.toString()
+                adapterTeam.notifyDataSetChanged()
+                etTeemD.requestFocus()
+            }
+            dialog.cancel()
+
+
+        }
+        btNoD.setOnClickListener { dialog.cancel() }
+
+        etTeemD.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_NEXT && etTeemD.text.isNotEmpty()) {
+                team.name = etTeemD.text.toString()
+                adapterTeam.notifyDataSetChanged()
+                dialog.cancel()
+            }
+            true
+
+        }
+        dialog.show()
     }
 
 }// Required empty public constructor

@@ -22,6 +22,11 @@
     <string name="player_name_empty">Имя не должно быть пустым</string>
     <string name="not_enough_players">Нужно больше игроков</string>
 
+    <!--renameTeam-->
+    <string name="team_rename">Название команды</string>
+    <string name="ok">Применить</string>
+    <string name="cancel">Отмена</string>
+
     <!-- hint-->
     <string name="hint_inject_name">Напиши имя игрока</string>
     <string name="hint_inject_name_button">Нажми на кнопку чтобы добавить его в игру. Для игры нужно как минимум 2 игрока</string>

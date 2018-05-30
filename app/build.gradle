@@ -22,6 +22,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+//for test
+    testOptions.unitTests.includeAndroidResources true
+
 }
 ext {
     support_version = "27.1.1"
