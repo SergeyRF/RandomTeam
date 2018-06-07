@@ -4,6 +4,9 @@ import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.Index
 import android.arch.persistence.room.PrimaryKey
+import android.bluetooth.le.AdvertiseSettings
+import android.provider.Settings
+import com.atilladroid.randomteam.MySettings
 import com.atilladroid.randomteam.db.Contract
 import com.atilladroid.randomteam.game.PlayerType
 
@@ -17,7 +20,8 @@ class Player(@ColumnInfo(name = Contract.PLAYER_NAME) var name: String = "Namele
              @ColumnInfo(name = Contract.PLAYER_LOCALE) var locale: String = "en",
              @PrimaryKey(autoGenerate = true) @ColumnInfo(name = Contract.PLAYER_ID) var id: Long = 0,
              @ColumnInfo(name = Contract.PLAYER_AVATAR) var avatar: String = "",
-             @ColumnInfo(name = Contract.PLAYER_TYPE) var type: PlayerType = PlayerType.USER
+             @ColumnInfo(name = Contract.PLAYER_TYPE) var type: PlayerType = PlayerType.USER,
+             @ColumnInfo(name = Contract.PLAYER_SETTINGS) var settings: Int = 0
 ) {
 
     override fun toString(): String {

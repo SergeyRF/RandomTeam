@@ -10,6 +10,8 @@ import com.atilladroid.randomteam.db.DbCreator
 import com.atilladroid.randomteam.db.DbExporter
 import com.atilladroid.randomteam.game.Logika
 import com.atilladroid.randomteam.utils.PreferenceHelper
+import com.squareup.picasso.LruCache
+import com.squareup.picasso.Picasso
 import timber.log.Timber
 
 /**
@@ -29,6 +31,12 @@ import timber.log.Timber
 
         val namesArray = resources.getStringArray(R.array.teams)
         Logika.teamNames = namesArray.toMutableList()
+
+        var picasso = Picasso.Builder(this)
+                .memoryCache(LruCache(2048))
+                .build()
+
+        Picasso.setSingletonInstance(picasso)
 
       DbCreator.createPlayers(DataBase.getInstance(this), this)
 //        DbCreator.createWords(DataBase.getInstance(this), this)

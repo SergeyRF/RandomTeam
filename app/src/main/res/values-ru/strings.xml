@@ -14,7 +14,7 @@
     <string name="remove_team">Удалить команду</string>
     <string name="shuffle_teams">Перемешать</string>
     <string name="two_team_min">2 команды минимум</string>
-    <string name="cant_create_teams">Минимум 2 игрока в комманде</string>
+    <string name="cant_create_teams">Минимум 1 игрок в комманде</string>
 
 
 
@@ -47,4 +47,10 @@
     <string name="rate_never">Никогда</string>
     <string name="rate_last">Позже</string>
     <string name="rate_ok">Оценить</string>
+
+    <!--settings-->
+    <string name="show_dice">Показать кубики игрока</string>
+    <string name="show_number">Окошко для цифр</string>
+    <string name="for_every">Сохранить для всех игроков</string>
+
 </resources>

@@ -4,7 +4,7 @@ package com.atilladroid.randomteam.db
  * Created by sergey on 5/11/18.
  */
 object Contract {
-    const val DB_VERSION = 1
+    const val DB_VERSION = 2
     const val DB_NAME = "shlyapa_db"
 
     //Players table columns
@@ -14,4 +14,5 @@ object Contract {
     const val PLAYER_NAME = "player_name"
     const val PLAYER_LOCALE = "player_locale"
     const val PLAYER_TYPE = "player_type"
+    const val PLAYER_SETTINGS = "player_settings"
 }

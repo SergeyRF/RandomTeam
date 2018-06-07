@@ -7,13 +7,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
 import android.widget.Toast
 import com.atilladroid.randomteam.PlayerTeamViewModel
 import com.atilladroid.randomteam.R
-import com.atilladroid.randomteam.activity.fragment.HintTeamFragment
-import com.atilladroid.randomteam.activity.fragment.PlayerFragment
-import com.atilladroid.randomteam.activity.fragment.RoundFragment
-import com.atilladroid.randomteam.activity.fragment.TeamFragment
+import com.atilladroid.randomteam.activity.fragment.*
 
 class PlayerTeamActivity : AppCompatActivity() {
     lateinit var viewModel: PlayerTeamViewModel
@@ -31,6 +29,7 @@ class PlayerTeamActivity : AppCompatActivity() {
         if (supportFragmentManager.findFragmentById(android.R.id.content) == null) {
             startPlayersFragment()
         }
+
     }
 
     fun onStartFragment(start: PlayerTeamViewModel.FragmentStart) {
@@ -40,6 +39,7 @@ class PlayerTeamActivity : AppCompatActivity() {
             PlayerTeamViewModel.FragmentStart.START_ROUND -> startRoundFragment()
             PlayerTeamViewModel.FragmentStart.START_HINT -> startHintTeam()
             PlayerTeamViewModel.FragmentStart.START_DICE -> startDice()
+            PlayerTeamViewModel.FragmentStart.START_SETTINGS -> startSettings()
         }
     }
 
@@ -80,6 +80,38 @@ class PlayerTeamActivity : AppCompatActivity() {
 
     private fun startDice() {
         startActivity(Intent(this, DiceActivity::class.java))
+    }
+
+    private fun startSettings() {
+        val fragment = SettingsFragment()
+        supportFragmentManager.beginTransaction()
+                .replace(android.R.id.content, fragment)
+                .addToBackStack(null)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit()
+    }
+
+    private fun menuBackPressed(b: Boolean) {
+        if (true) {
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setHomeButtonEnabled(true)
+        }
+        /* else{
+             supportActionBar?.setDisplayHomeAsUpEnabled(false)
+             supportActionBar?.setHomeButtonEnabled(false)
+         }*/
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        item?.let {
+            when (item.itemId) {
+                android.R.id.home -> onBackPressed()
+                R.id.item_show_hint -> startHintTeam()
+                R.id.item_settings -> startSettings()
+            }
+        }
+
+        return true
     }
 
     override fun onBackPressed() {

@@ -12,7 +12,7 @@
     <string name="remove_team">Remove a team</string>
     <string name="shuffle_teams">Shuffle teams</string>
     <string name="two_team_min">2 teams is a minimum</string>
-    <string name="cant_create_teams">Minimum two player per team</string>
+    <string name="cant_create_teams">Minimum one player per team</string>
 
     <string name="not_enough_players">Add more players</string>
     <string name="name_not_unic">Player already exists</string>
@@ -42,6 +42,11 @@
     <string name="rate_never">Never</string>
     <string name="rate_last">Later</string>
     <string name="rate_ok">Rate</string>
+
+    <!--settings-->
+    <string name="show_dice">Show my dices</string>
+    <string name="show_number">Show window for digit</string>
+    <string name="for_every">This settings for every players</string>
 
 
 </resources>

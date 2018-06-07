@@ -26,6 +26,7 @@ class PlayerTeamViewModel(application: Application) : AndroidViewModel(applicati
     private val teamsLiveData = MutableLiveData<List<Team>>()
     private val avatarLiveData = MutableLiveData<String>()
 
+
     val listOfAvatars: MutableList<String> = mutableListOf()
     private val dataProvider = DataProvider(application)
 
@@ -111,6 +112,9 @@ class PlayerTeamViewModel(application: Application) : AndroidViewModel(applicati
     fun startDice() {
         StartFragmentLD.value = FragmentStart.START_DICE
     }
+    fun startSettings(){
+        StartFragmentLD.value = FragmentStart.START_SETTINGS
+    }
 
     fun initTeams() {
         Logika.createTeams(2)
@@ -162,6 +166,7 @@ class PlayerTeamViewModel(application: Application) : AndroidViewModel(applicati
         START_TEAM,
         START_ROUND,
         START_HINT,
-        START_DICE
+        START_DICE,
+        START_SETTINGS
     }
 }

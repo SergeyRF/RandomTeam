@@ -7,6 +7,7 @@ import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
 import com.atilladroid.randomteam.R
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_dice.*
 
 class DiceActivity : AppCompatActivity() {
@@ -20,7 +21,7 @@ class DiceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dice)
         setText()
-
+        setImage()
 
         ib_plus_d.setOnClickListener {
             plusDice()
@@ -39,6 +40,8 @@ class DiceActivity : AppCompatActivity() {
             setText()
         }
 
+
+
         iv_dice_d2.setOnClickListener { dialog(createDice(2)) }
         iv_dice_d3.setOnClickListener { dialog(createDice(3)) }
         iv_dice_d4.setOnClickListener { dialog(createDice(4)) }
@@ -50,6 +53,35 @@ class DiceActivity : AppCompatActivity() {
         iv_dice_d100.setOnClickListener { dialog(createDice(100)) }
 
 
+    }
+
+    fun setImage() {
+        val d = arrayOf(
+                R.drawable.dice2,
+                R.drawable.dice3,
+                R.drawable.dice4,
+                R.drawable.dice6,
+                R.drawable.dice8,
+                R.drawable.dice10,
+                R.drawable.dice12,
+                R.drawable.dice20,
+                R.drawable.dice100)
+        val dice = arrayOf(
+                iv_dice_d2,
+                iv_dice_d3,
+                iv_dice_d4,
+                iv_dice_d6,
+                iv_dice_d8,
+                iv_dice_d10,
+                iv_dice_d12,
+                iv_dice_d20,
+                iv_dice_d100)
+        for (i in 0 until d.size) {
+
+            Picasso.get()
+                    .load(d[i])
+                    .into(dice[i])
+        }
     }
 
 
@@ -137,7 +169,6 @@ class DiceActivity : AppCompatActivity() {
             }
         }
         tvDiceSmollResult.text = smollResult
-
 
 
         dialog.show()

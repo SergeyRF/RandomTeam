@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.atilladroid.randomteam.activity.DiceActivity">
+
     <TextView
+        android:id="@+id/tv_hello"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/big_margin"
@@ -13,7 +15,6 @@
         android:text="Tap to roll"
         android:textColor="@color/primary_text"
         android:textSize="@dimen/text_smoll"
-        android:id="@+id/tv_hello"
 
         />
 
@@ -21,9 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/tv_hello"
-        >
-
+        app:layout_constraintTop_toBottomOf="@+id/tv_hello">
 
 
         <LinearLayout
@@ -34,22 +33,19 @@
                 android:id="@+id/iv_dice_d2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/d2" />
+                android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/iv_dice_d3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/d3" />
+                android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/iv_dice_d4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/d4" />
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -90,22 +86,19 @@
                 android:id="@+id/iv_dice_d6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/d6" />
+                android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/iv_dice_d8"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/d8" />
+                android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/iv_dice_d10"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/d10" />
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -146,23 +139,20 @@
                 android:id="@+id/iv_dice_d12"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/d12" />
+                android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/iv_dice_d20"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/d20" />
+                android:layout_weight="1" />
 
 
             <ImageView
                 android:id="@+id/iv_dice_d100"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/d100" />
+                android:layout_weight="1" />
 
         </LinearLayout>
 

@@ -6,6 +6,7 @@ import android.arch.lifecycle.MutableLiveData
 import com.atilladroid.randomteam.beans.Player
 import com.atilladroid.randomteam.beans.Team
 import com.atilladroid.randomteam.game.Logika
+import timber.log.Timber
 
 /**
  * Created by sergey on 5/12/18.
@@ -17,8 +18,30 @@ class RoundViewModel(application: Application) : AndroidViewModel(application) {
     private val teams: List<Team> = Logika.getTeams()
     var currentTeamPosition = 0
 
+    val playerSettings = mutableMapOf<String, MySettings>()
+
+
+    fun getPlayerNumber() = playerSettings[currentPlayer.value?.name]?.number
+    fun setPlayerNumber(i: String) {
+        Timber.d("Set player number $i")
+        playerSettings[currentPlayer.value!!.name]!!.number = i
+    }
+
+    fun getPlayerDice() = playerSettings[currentPlayer.value?.name]?.dice
+    fun setPlayerDice(i: Int) {
+        playerSettings[currentPlayer.value?.name]?.dice = i
+    }
+
+    fun createSettings() {
+        for (i in 0 until teams.size) {
+            teams[i].players.forEach { playerSettings[it.name] = MySettings() }
+        }
+    }
+
+
     init {
         updateData()
+        createSettings()
     }
 
     fun nextTeam() {
@@ -31,6 +54,14 @@ class RoundViewModel(application: Application) : AndroidViewModel(application) {
 
         teams[currentTeamPosition].nextPlayer()
         updateData()
+    }
+
+    fun setSettingsPlayer(flag: Int) {
+        currentPlayer.value?.settings = flag
+    }
+
+    fun setSettingsEvery(flag: Int) {
+        Logika.getPlayers().forEach { it.settings = flag }
     }
 
 

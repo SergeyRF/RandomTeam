@@ -14,7 +14,7 @@ object Logika {
     var teamNames: MutableList<String> = mutableListOf()
 
 
-    fun maxTeamsCount(): Int = players.size / 2
+    fun maxTeamsCount(): Int = players.size
 
     fun addPlayer(player: Player): Boolean {
         return if (players.containsKey(player.id)) {
@@ -36,6 +36,7 @@ object Logika {
     fun getPlayers(): List<Player> {
         return players.values.toList()
     }
+
 
     fun createTeams(count: Int) {
         val shuffledPlayers: MutableList<Player> = players.values.toMutableList()
