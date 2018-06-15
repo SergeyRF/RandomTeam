@@ -35,7 +35,7 @@ class DiceActivity : AppCompatActivity() {
             plusNumber()
             setText()
         }
-        ib_minus_number.setOnClickListener {
+        ib_minus.setOnClickListener {
             minusNumber()
             setText()
         }

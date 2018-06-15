@@ -17,9 +17,14 @@ class RoundViewModel(application: Application) : AndroidViewModel(application) {
     var currentPlayer = MutableLiveData<Player>()
     private val teams: List<Team> = Logika.getTeams()
     var currentTeamPosition = 0
-
+    var selectDice = MutableLiveData<MySettings>()
     val playerSettings = mutableMapOf<String, MySettings>()
 
+    init {
+        updateData()
+        createSettings()
+
+    }
 
     fun getPlayerNumber() = playerSettings[currentPlayer.value?.name]?.number
     fun setPlayerNumber(i: String) {
@@ -27,22 +32,31 @@ class RoundViewModel(application: Application) : AndroidViewModel(application) {
         playerSettings[currentPlayer.value!!.name]!!.number = i
     }
 
-    fun getPlayerDice() = playerSettings[currentPlayer.value?.name]?.dice
-    fun setPlayerDice(i: Int) {
-        playerSettings[currentPlayer.value?.name]?.dice = i
-    }
 
     fun createSettings() {
         for (i in 0 until teams.size) {
             teams[i].players.forEach { playerSettings[it.name] = MySettings() }
         }
-    }
-
-
-    init {
         updateData()
-        createSettings()
     }
+
+    fun haveSelectDice(): Boolean {
+        selectDice.value!!.diceSize.forEach {
+            if (it.value > 0) {
+                return true
+            }
+        }
+        return false
+    }
+
+    fun saveSelect(select: MutableMap<String, Array<Int>>) {
+        playerSettings[currentPlayer.value!!.name]!!.setSelect(select)
+    }
+
+    fun rollDices(): Array<MutableList<Int>> {
+        return Logika.rollAnyDices(selectDice.value!!)
+    }
+
 
     fun nextTeam() {
         if (currentTeamPosition == teams.size - 1) {
@@ -68,6 +82,7 @@ class RoundViewModel(application: Application) : AndroidViewModel(application) {
     fun updateData() {
         currentPlayer.value = teams[currentTeamPosition].getPlayer()
         currentTeam.value = teams[currentTeamPosition]
+        selectDice.value = playerSettings[currentPlayer.value!!.name]
 
     }
 

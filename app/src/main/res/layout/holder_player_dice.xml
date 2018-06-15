@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_diceName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:gravity="center"
+        android:text="100d100+100 = "
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/text_medium"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tv_diceResult"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_diceResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:gravity="center"
+        android:text="1200"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/text_medium"
+
+        app:layout_constraintLeft_toRightOf="@+id/tv_diceName"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_diceSmollResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:gravity="center"
+        android:text="2, 4, ,4, 5, 4, 4"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/text_smoll"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_diceName"
+        app:layout_constraintRight_toRightOf="@+id/tv_diceResult"
+        app:layout_constraintTop_toBottomOf="@+id/tv_diceName" />
+
+</android.support.constraint.ConstraintLayout>

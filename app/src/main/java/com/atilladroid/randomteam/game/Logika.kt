@@ -1,5 +1,7 @@
 package com.atilladroid.randomteam.game
 
+import android.os.Handler
+import com.atilladroid.randomteam.MySettings
 import com.atilladroid.randomteam.beans.Player
 import com.atilladroid.randomteam.beans.Team
 import java.util.*
@@ -68,5 +70,52 @@ object Logika {
     fun newGame() {
         players.clear()
         teams.clear()
+    }
+
+    fun rollAnyDices(dices: MySettings): Array<MutableList<Int>> {
+
+        val i = dices.getDicesNames()
+        var n = 0
+        var lenght = 0
+        for (f in 0..i.size - 1) {
+            if (dices.diceSize[i[f]]!! > 0) {
+                lenght++
+            }
+        }
+        var diceResultEvery: Array<MutableList<Int>> = Array(lenght, { mutableListOf<Int>() })
+
+
+        i.forEach {
+            if (dices.diceSize[it]!! > 0) {
+
+                diceResultEvery.set(n,
+                        createDice(dices.diceSize[it]!!.toInt(), dices.diceNumber[it]!!.toInt(),
+                                it.removePrefix("d").toInt()))
+                n++
+            }
+        }
+
+        return diceResultEvery
+    }
+
+    fun createDice(diceSum: Int, numberSum: Int, dice: Int): MutableList<Int> {
+        val listResult = mutableListOf<Int>()
+        var result: Int
+
+        for (i in 1..diceSum) {
+            listResult.add(generateRandom(dice))
+        }
+        result = listResult.sum() + numberSum
+        listResult.add(result)
+        listResult.add(dice)
+        listResult.add(numberSum)
+        listResult.add(diceSum)
+        //результаты бросков,..., общий результат, кубик, добавка, кол-во кубиков
+        return listResult
+    }
+
+    fun generateRandom(dice: Int): Int {
+        Handler().postDelayed({ }, dice.toLong() / 10)
+        return (Math.random() * dice).toInt() + 1
     }
 }

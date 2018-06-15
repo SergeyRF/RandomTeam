@@ -1,14 +1,18 @@
 package com.atilladroid.randomteam.activity.fragment
 
+import android.app.Dialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.text.InputType
 import android.view.*
 import com.atilladroid.randomteam.PlayerTeamViewModel
 import com.atilladroid.randomteam.R
 import com.atilladroid.randomteam.RoundViewModel
+import com.atilladroid.randomteam.RvAdapter
 import com.atilladroid.randomteam.beans.Player
 import com.atilladroid.randomteam.beans.Team
 import com.atilladroid.randomteam.utils.Functions
@@ -63,6 +67,17 @@ class RoundFragment : Fragment() {
         civDice.setOnClickListener {
             viewModelTeam.startDice()
         }
+        civ_my_dice.setOnClickListener {
+            if (viewModel.haveSelectDice()) {
+                dialogDiceResult(viewModel.rollDices())
+            } else {
+                viewModelTeam.startDiseSelect()
+            }
+        }
+        civ_my_dice.setOnLongClickListener {
+            viewModelTeam.startDiseSelect()
+            true
+        }
 
         et_my_number.inputType = InputType.TYPE_CLASS_NUMBER
 
@@ -87,30 +102,44 @@ class RoundFragment : Fragment() {
         if (flag.and(4) == 4) civ_my_dice.show() else civ_my_dice.gone()
     }
 
-    fun showHideFlags() {
-        val flag: Int = viewModel.currentPlayer.value!!.settings
-        if (flag.and(2) == 2) et_my_number.show() else et_my_number.gone()
-        if (flag.and(4) == 4) civ_my_dice.show() else civ_my_dice.gone()
-    }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         inflater!!.inflate(R.menu.menu_hint, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    /* override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-         Timber.d("${item?.itemId}")
-         if (item?.itemId == R.id.item_show_hint) {
-             Timber.d("Click Show Hint")
-             viewModelTeam.startHint()
-             return true
-         }
-         if(item?.itemId==R.id.item_settings){
-             Timber.d("Click Settings")
-             viewModelTeam.startSettings()
-             return true
-         }
-         return super.onOptionsItemSelected(item)
-     }*/
+    fun dialogDiceResult(dices: Array<MutableList<Int>>) {
+
+        val dialog = Dialog(context)
+
+        dialog.setContentView(R.layout.dialog_player_dice)
+        val rvResult: RecyclerView = dialog.findViewById(R.id.rvResult)
+        rvResult.layoutManager = LinearLayoutManager(context)
+        val adapter = RvAdapter()
+        rvResult.adapter = adapter
+
+        adapter.setData(listOf(*dices))
+
+        dialog.show()
+
+    }
+
+    /*fun dialogDiceResult() {
+
+
+         var buider = AlertDialog.Builder(context)
+         buider.setTitle("ffffffffffff\tFDERGGF")
+                 .setMessage("HHHHHHHHHJJJJJJ\nKKKKJUHHH")
+
+
+        val dialog :AlertDialog = buider.create()
+
+        dialog.show()
+
+
+    }*/
+
 
 }// Required empty public constructor
+
+

@@ -155,5 +155,43 @@ class TeamHolderWithoutRename(val view: View) : BaseHolder(view) {
             true
         }
     }
+}
 
+class DiceResultHolder(view: View) : BaseHolder(view) {
+
+    val tvDiceName: TextView = view.findViewById(R.id.tv_diceName)
+    val tvDiceResult: TextView = view.findViewById(R.id.tv_diceResult)
+    val tvDiceSmollResult: TextView = view.findViewById(R.id.tv_diceSmollResult)
+
+    fun bind(dices: MutableList<Int>) {
+//результаты бросков,..., общий результат, кубик, добавка, кол-во кубиков
+
+
+        val diceSum = dices[dices.lastIndex]
+        val numberSum = dices[dices.lastIndex - 1]
+        val diceName = dices[dices.lastIndex - 2]
+        val result = dices[dices.lastIndex - 3]
+
+
+        var dice = "${diceSum}d${diceName}"
+        if (numberSum != 0) {
+            if (numberSum > 0) {
+                dice += "+${numberSum} = "
+            } else {
+                dice += "${numberSum} = "
+            }
+        } else dice += " = "
+        tvDiceName.text = dice
+
+        tvDiceResult.text = "${result}"
+        var smollResult: String = ""
+        for (i in 0..dices.lastIndex - 4) {
+            if (i == 0) {
+                smollResult = dices[i].toString()
+            } else {
+                smollResult += ", ${dices[i]}"
+            }
+        }
+        tvDiceSmollResult.text = smollResult
+    }
 }

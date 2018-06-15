@@ -112,8 +112,13 @@ class PlayerTeamViewModel(application: Application) : AndroidViewModel(applicati
     fun startDice() {
         StartFragmentLD.value = FragmentStart.START_DICE
     }
-    fun startSettings(){
+
+    fun startSettings() {
         StartFragmentLD.value = FragmentStart.START_SETTINGS
+    }
+
+    fun startDiseSelect() {
+        StartFragmentLD.value = FragmentStart.START_DICE_SELECT
     }
 
     fun initTeams() {
@@ -167,6 +172,7 @@ class PlayerTeamViewModel(application: Application) : AndroidViewModel(applicati
         START_ROUND,
         START_HINT,
         START_DICE,
-        START_SETTINGS
+        START_SETTINGS,
+        START_DICE_SELECT
     }
 }

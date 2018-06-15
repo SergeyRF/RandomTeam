@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="NumberInput">
-        <attr name="number_input_title" format="reference|string"/>
+        <attr name="number_input_title" format="reference|string" />
     </declare-styleable>
+    <declare-styleable name="DiceSelect">
+        <attr name="dice_input_title" format="reference|string" />
+    </declare-styleable>
+
 
 </resources>

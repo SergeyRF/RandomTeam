@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.fragment.DiceSelectFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        >
+
+        <com.atilladroid.randomteam.view.DiceSelect
+            android:id="@+id/DS_d2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <com.atilladroid.randomteam.view.DiceSelect
+            android:id="@+id/DS_d3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <com.atilladroid.randomteam.view.DiceSelect
+            android:id="@+id/DS_d4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <com.atilladroid.randomteam.view.DiceSelect
+            android:id="@+id/DS_d6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <com.atilladroid.randomteam.view.DiceSelect
+            android:id="@+id/DS_d8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <com.atilladroid.randomteam.view.DiceSelect
+            android:id="@+id/DS_d10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <com.atilladroid.randomteam.view.DiceSelect
+            android:id="@+id/DS_d12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <com.atilladroid.randomteam.view.DiceSelect
+            android:id="@+id/DS_d20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <com.atilladroid.randomteam.view.DiceSelect
+            android:id="@+id/DS_d100"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+
+
+</FrameLayout>

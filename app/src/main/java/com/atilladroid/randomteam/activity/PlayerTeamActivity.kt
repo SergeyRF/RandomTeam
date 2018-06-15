@@ -40,6 +40,7 @@ class PlayerTeamActivity : AppCompatActivity() {
             PlayerTeamViewModel.FragmentStart.START_HINT -> startHintTeam()
             PlayerTeamViewModel.FragmentStart.START_DICE -> startDice()
             PlayerTeamViewModel.FragmentStart.START_SETTINGS -> startSettings()
+            PlayerTeamViewModel.FragmentStart.START_DICE_SELECT -> startDiceSelect()
         }
     }
 
@@ -53,6 +54,15 @@ class PlayerTeamActivity : AppCompatActivity() {
 
     private fun startTeamsFragment() {
         val fragment = TeamFragment()
+        supportFragmentManager.beginTransaction()
+                .replace(android.R.id.content, fragment)
+                .addToBackStack(null)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit()
+    }
+
+    private fun startDiceSelect() {
+        val fragment = DiceSelectFragment()
         supportFragmentManager.beginTransaction()
                 .replace(android.R.id.content, fragment)
                 .addToBackStack(null)

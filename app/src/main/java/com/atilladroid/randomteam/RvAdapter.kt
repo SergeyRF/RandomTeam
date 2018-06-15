@@ -27,6 +27,7 @@ class RvAdapter : RecyclerView.Adapter<BaseHolder>() {
         val holder = when (viewType) {
             VIEW_TYPE_PLAYER -> PlayerHolder(view)
             VIEW_TYPE_TEAM -> if (teamRename) TeamHolder(view) else TeamHolderWithoutRename(view)
+            VIEW_TYPE_DICE -> DiceResultHolder(view)
             else -> throw RuntimeException("Unsupported item type")
         }
 
@@ -47,6 +48,7 @@ class RvAdapter : RecyclerView.Adapter<BaseHolder>() {
             is PlayerHolder -> holder.bind(item as Player)
             is TeamHolder -> holder.bind(item as Team)
             is TeamHolderWithoutRename -> holder.bind(item as Team)
+            is DiceResultHolder -> holder.bind(item as MutableList<Int>)
         }
     }
 
@@ -55,6 +57,7 @@ class RvAdapter : RecyclerView.Adapter<BaseHolder>() {
         return when (item) {
             is Player -> VIEW_TYPE_PLAYER
             is Team -> VIEW_TYPE_TEAM
+            is MutableList<*> -> VIEW_TYPE_DICE
             else -> throw RuntimeException("Unsupported item type")
         }
     }
@@ -67,6 +70,7 @@ class RvAdapter : RecyclerView.Adapter<BaseHolder>() {
     companion object {
         const val VIEW_TYPE_PLAYER = R.layout.holder_player
         const val VIEW_TYPE_TEAM = R.layout.holder_team
+        const val VIEW_TYPE_DICE = R.layout.holder_player_dice
     }
 
 }
